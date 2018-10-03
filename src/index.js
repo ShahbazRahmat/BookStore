@@ -21,25 +21,24 @@ const Root = () =>
                         </Navbar.Brand>
                     </Navbar.Toggle>
                 </Navbar.Header>
-
                 <Navbar.Collapse>
                     <Nav>
                         <NavItem>
-                            <NavLink exact to="/" activeClassName="active">Home</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink to="/App" activeClassName="active">Book Gallery</NavLink>
+                            <NavLink to="/" activeClassName="active">Book Gallery</NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink to="/BookStoresList" activeClassName="active">Book Stores</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink exact to="/Home" activeClassName="active">Search Stores</NavLink>
                         </NavItem>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
             
-            <Route exact path="/" component={Home} />
-            <Route path="/App" component={App} />
+            <Route exact path="/" component={App} />
             <Route path="/BookStoresList" component={BookStoresList} />
+            <Route path="/Home" component={Home} />
         </div>
     </Router>
    );
