@@ -6,7 +6,8 @@ import App from './App';
 import Home from './components/commen/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
-import BookStoresList from './components/Books/BookStoresList';
+import BookStoresList from './components/BookStore/BookStoresList';
+import SearchBookStores from './components/BookStore/SearchBookStores';
 
 
 const Root = () =>
@@ -39,6 +40,7 @@ const Root = () =>
             <Route exact path="/" component={App} />
             <Route path="/BookStoresList" component={BookStoresList} />
             <Route path="/Home" component={Home} />
+            <Route path="/SearchBookStores/:id" component={SearchBookStores} />
         </div>
     </Router>
    );

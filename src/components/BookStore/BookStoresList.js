@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import BookStores from '../commen/BookStores';
+import BookStores from './BookStores';
 
 class BookStoreList extends Component
 {

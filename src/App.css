@@ -22,6 +22,7 @@ ul.list-main-heading {
 ul.list-group-detail {
   border-right: 1px solid #ccc;
   border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   margin: 0;
   padding: 0;
 }
