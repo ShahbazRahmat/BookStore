@@ -19,6 +19,35 @@ ul.list-main-heading {
   background: #efefef;
   padding: 20px 20px;
 }
+.store-detail li:nth-child(odd){
+  background: #efefef;
+  padding: 20px 20px;
+}
+.store-detail li:nth-child(even){
+  background: #cccccc17;
+  padding: 20px 20px;
+}
+.store-detail li{
+  list-style: none;
+}
+
+.active-book-detail {
+  padding: 27px 0px 16px 15px;
+  font-size: 40px;
+}
+
+.not-found {
+  font-size: 36px;
+  color: #ef1a04e6;
+}
+
+.store-detail
+{
+  border: 1px solid #ccc;
+  padding-inline-start: 0px;
+  font-size: 17px;
+}
+
 ul.list-group-detail {
   border-right: 1px solid #ccc;
   border-left: 1px solid #ccc;

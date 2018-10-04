@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
 import App from './App';
-import Home from './components/commen/Home';
+import About from './components/commen/About';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import BookStoresList from './components/BookStore/BookStoresList';
@@ -31,7 +31,7 @@ const Root = () =>
                             <NavLink to="/BookStoresList" activeClassName="active">Book Stores</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink exact to="/Home" activeClassName="active">Search Stores</NavLink>
+                            <NavLink exact to="/About" activeClassName="active">About</NavLink>
                         </NavItem>
                     </Nav>
                 </Navbar.Collapse>
@@ -39,7 +39,7 @@ const Root = () =>
             
             <Route exact path="/" component={App} />
             <Route path="/BookStoresList" component={BookStoresList} />
-            <Route path="/Home" component={Home} />
+            <Route path="/About" component={About} />
             <Route path="/SearchBookStores/:id" component={SearchBookStores} />
         </div>
     </Router>
