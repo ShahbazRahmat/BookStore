@@ -8,6 +8,30 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import BookStoresList from './components/BookStore/BookStoresList';
 import SearchBookStores from './components/BookStore/SearchBookStores';
+import { createStore } from  'redux';
+import { Provider } from 'react-redux';
+import rootReducer from './components/rootReducer';
+
+
+// const INITIAL_STATE = {
+//     bookList: []  
+//   }
+  
+//   const fuck = (state = INITIAL_STATE, action) => {
+//       debugger;
+//       switch(action.type) {
+//           case 'SEARCHED_BOOK':
+//             {
+//             console.log('Action', action)
+//             return {...state, bookList: action.payload };
+//             }
+//           default:
+//           return state;
+//       }
+//   }
+const store = createStore(rootReducer);
+
+
 
 
 const Root = () =>
@@ -24,13 +48,13 @@ const Root = () =>
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav>
-                        <NavItem>
+                        <NavItem componentClass='span'>
                             <NavLink to="/" activeClassName="active">Book Gallery</NavLink>
                         </NavItem>
-                        <NavItem>
+                        <NavItem componentClass='span'>
                             <NavLink to="/BookStoresList" activeClassName="active">Book Stores</NavLink>
                         </NavItem>
-                        <NavItem>
+                        <NavItem componentClass='span'>
                             <NavLink exact to="/About" activeClassName="active">About</NavLink>
                         </NavItem>
                     </Nav>
@@ -47,7 +71,8 @@ const Root = () =>
 }
 
 ReactDOM.render(
-    <Root />
-    //<App />
+   <Provider store={store}>
+   <Root />
+   </Provider>
     , document.getElementById('root'));
 registerServiceWorker();

@@ -8,7 +8,7 @@ const BookGallery = ({items, error}) =>
             { error && <h3>{error}</h3>}
             {
               items !== undefined &&  items.map((item, i)=>(
-                    <BookInfo data={item} index={i} />
+                    <BookInfo data={item} key={i} />
                 ))
             }       
         </div>

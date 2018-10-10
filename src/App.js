@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import './App.css';
 import SearchBooks from './components/forms/SearchBooks';
 import BookGallery from './components/Books/BookGallery';
 import BookGalleryTitle from './components/commen/BookGalleryTitle';
-//import BookStoreList from './components/Books/BookStoresList';
 import 'bootstrap/dist/css/bootstrap.min.css';
+//import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { searchBooks } from './components/api';
+import { booksSearched } from './components/actions/searchBooksAction';
+
 
 class App extends Component {
 
@@ -14,32 +18,28 @@ state = {
   error: ""
 };
 
+// componentWillMount() 
+// {
+//   const { onSearchButtonPress } = this.props.actions;
+//   onSearchButtonPress(query);
+//   debugger;
+// }
+
 
 SearchBooks = async (e) =>
 {
+  
   e.preventDefault();
   const {value} = e.target.elements.book;
   if(value)
   {
   const query = value;
   e.target.elements.book.value = "";
-  await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}`)
-  .then( res => {
-    if(res.status === 200)
-    {
-      const {items}  = res.data;
-
-      this.setState({
-        items,
-        error: ""
-      });
-    }
-  }).catch( err =>{
-    this.setState({
-      items: [],
-      error: err.message
-    });
-  });
+    await searchBooks(query).then((res)=> {
+      console.log('response......', res.data)
+      const { booksSearched } = this.props;
+      booksSearched({ searchedBooks: res.data});
+    })
   }
   else
   {
@@ -53,15 +53,28 @@ SearchBooks = async (e) =>
 }
 
   render() {
+    // console.log(this.props);
     const {items, error} = this.state;
+    console.log('App state',this.state);
+    debugger;
     return (
       <div className="container">
         <BookGalleryTitle />
-        <SearchBooks  SearchBooks={this.SearchBooks}/>
+        <SearchBooks  SearchBooks={this.SearchBooks} />
         <BookGallery items={items} key={items.id} error={error} />
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  items: state.bookList
+});
+
+const actions = {
+  booksSearched: booksSearched
+}
+
+// export default connect(mapActionsToProps)(App);
+//export default App;
+export default connect(mapStateToProps,actions)(App);

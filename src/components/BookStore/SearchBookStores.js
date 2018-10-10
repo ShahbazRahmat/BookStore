@@ -21,7 +21,7 @@ class SearchBook extends Component{
      BookStores.forEach((bookStore) =>
      {
          const book = bookStore.books.find((book) =>{
-                     return book.identifier === id
+            return book.identifier === id
         });
         if(book !== undefined)
         findedStore.push({name:bookStore.name,city:bookStore.city,address:bookStore.address,country:bookStore.country, phone: bookStore.contect, findBook:book});
@@ -37,15 +37,15 @@ class SearchBook extends Component{
         {
             return(
                 <div className="container">
-                        <div>
-                         <span className="active-book-detail"> Book Name: {bookStores !== undefined && bookStores[0].findBook.bookname}</span><span> is available in below mentioned stores</span>
-                        </div>
-                        <ul className="store-detail">
+                    <div>
+                        <span className="active-book-detail"> Book Name: {bookStores !== undefined && bookStores[0].findBook.bookname}</span><span> is available in below mentioned stores</span>
+                    </div>
+                    <ul className="store-detail">
                         { bookStores !== undefined &&
                             bookStores.map((bookStore,i) =>                       
                             <li key={i}><span><b>STORE: {bookStore.name}</b> </span> <span>Address: {bookStore.address} , {bookStore.city}, {bookStore.country} </span> <span>Contect #{ bookStore.phone}</span></li> 
                         )}
-                        </ul>
+                    </ul>
                 </div>
             );
         }

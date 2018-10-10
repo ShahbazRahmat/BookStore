@@ -36,6 +36,12 @@ ul.list-main-heading {
   font-size: 40px;
 }
 
+.navbar-nav span[role=button] {
+  padding: 15px;
+  display: inline-block;
+  line-height: 20px;
+}
+
 .not-found {
   font-size: 36px;
   color: #ef1a04e6;
