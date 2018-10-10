@@ -8,16 +8,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import BookStoresList from './components/BookStore/BookStoresList';
 import SearchBookStores from './components/BookStore/SearchBookStores';
-import { createStore } from  'redux';
+import { createStore, applyMiddleware } from  'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './components/rootReducer';
+import ReduxThunk  from 'redux-thunk';
 
 
 // const INITIAL_STATE = {
 //     bookList: []  
 //   }
   
-//   const fuck = (state = INITIAL_STATE, action) => {
+//   const fuck =(state = INITIAL_STATE, action) => {
 //       debugger;
 //       switch(action.type) {
 //           case 'SEARCHED_BOOK':
@@ -29,7 +30,7 @@ import rootReducer from './components/rootReducer';
 //           return state;
 //       }
 //   }
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 
 

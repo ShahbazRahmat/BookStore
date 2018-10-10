@@ -5,76 +5,58 @@ import SearchBooks from './components/forms/SearchBooks';
 import BookGallery from './components/Books/BookGallery';
 import BookGalleryTitle from './components/commen/BookGalleryTitle';
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { searchBooks } from './components/api';
-import { booksSearched } from './components/actions/searchBooksAction';
+import * as searcBookActions from './components/actions/searchBooksAction';
 
 
 class App extends Component {
 
-state = {
-  items: [],
-  error: ""
-};
 
-// componentWillMount() 
-// {
-//   const { onSearchButtonPress } = this.props.actions;
-//   onSearchButtonPress(query);
-//   debugger;
-// }
-
-
-SearchBooks = async (e) =>
-{
-  
+SearchBooks = async (e) =>{
   e.preventDefault();
   const {value} = e.target.elements.book;
-  if(value)
-  {
+  if(value){
   const query = value;
   e.target.elements.book.value = "";
-    await searchBooks(query).then((res)=> {
-      console.log('response......', res.data)
-      const { booksSearched } = this.props;
-      booksSearched({ searchedBooks: res.data});
-    })
+  const { booksSearched } = this.props.actions;
+    await booksSearched(query);
   }
-  else
-  {
-    this.setState({
-      items: [],
-      error: "Please provide the name of the book!"
-    });
+  else{
+    const error = "Please provide the name of the book!"
   }
   
   
 }
 
   render() {
-    // console.log(this.props);
-    const {items, error} = this.state;
-    console.log('App state',this.state);
-    debugger;
+    const { bookList, error } = this.props.state;
     return (
       <div className="container">
         <BookGalleryTitle />
         <SearchBooks  SearchBooks={this.SearchBooks} />
-        <BookGallery items={items} key={items.id} error={error} />
+        <BookGallery items={bookList} error={error} />
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  items: state.bookList
-});
+export default connect(
+  state => ({
+  state: state.SearchBook
+  }),
+  dispatch => ({
+  actions: bindActionCreators(searcBookActions, dispatch)
+  })
+  )(App);
+// const mapStateToProps = (state) => ({
+//   items: state.bookList
+// });
 
-const actions = {
-  booksSearched: booksSearched
-}
+// const actions = {
+//   booksSearched: booksSearched
+// }
 
-// export default connect(mapActionsToProps)(App);
-//export default App;
-export default connect(mapStateToProps,actions)(App);
+// // export default connect(mapActionsToProps)(App);
+// //export default App;
+// export default connect(mapStateToProps,actions)(App);
